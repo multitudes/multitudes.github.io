@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous"/><link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css"/><link rel="stylesheet" href="/Pure/styles.css"/><link rel="stylesheet" href="/all.css"/></head><body><div id="layout" class="pure-g"><div><div class="pure-menu pure-menu-horizontal pure-u-1-1 top-header"><a class="pure-menu-heading" href="/">Home</a><ul class="pure-menu-list"><li class="pure-menu-item"><a class="pure-menu-link" href="/about">About</a></li></ul></div></div><div class="sidebar pure-u-1 pure-u-md-1-4"><div class="header"><div id="layout" class="pure-g"><div class="author__avatar"><img src="https://avatars2.githubusercontent.com/u/29355828?s=400&u=8a4658d2d5d4b601e9246f9c77d61cd80b78d848&v=4"/></div><div class="pure-u-md-1-1 pure-u-3-4"><h1 class="brand-title">Laurent Brusa</h1><h3 class="brand-tagline">iOS Developer</h3></div></div><div id="layout" class="pure-g"><div class="pure-u-md-1-1"><a><i class="fas fa-map-marker-alt l-box"></i><a class="social-media">Berlin, Germany</a></a></div><div class="pure-u-md-1-1"><a href="mailto:Laurentbrusa@me.com"><i class="fas fa-envelope-open-text l-box"></i><a class="social-media" href="mailto:Laurentbrusa@me.com">Email</a></a></div><div class="pure-u-md-1-1"><a href="https://www.linkedin.com/in/laurentbrusa"><i class="fab fa-linkedin l-box"></i><a class="social-media" href="https://www.linkedin.com/in/laurentbrusa">LinkedIn</a></a></div><div class="pure-u-md-1-1"><a href="https://github.com/multitudes"><i class="fab fa-github-square l-box"></i><a class="social-media" href="https://github.com/multitudes">GitHub</a></a></div><div class="pure-u-md-1-1"><a href="https://twitter.com/wrmultitudes"><i class="fab fa-twitter-square l-box"></i><a class="social-media" href="https://twitter.com/wrmultitudes">Twitter</a></a></div></div></div></div><div class="content pure-u-1 pure-u-md-3-5 pure-u-xl-6-10"><h2 class="post-title"><a href="/posts/Delegates-Protocols">Delegate Pattern in Swift easy explained</a></h2><p class="post-meta">25 January 2020</p><div class="post-tags"><a class="post-category post-category-ios" href="/tags/ios">iOS</a><a class="post-category post-category-developer" href="/tags/developer">developer</a><a class="post-category post-category-xcode" href="/tags/xcode">Xcode</a><a class="post-category post-category-tutorial" href="/tags/tutorial">tutorial</a></div><div class="post-description"><div><p>Delegation is a very common Design Pattern in iOS. For beginners can be a bit difficult to understand at first. Here is a quick rundown to get it working quickly.</p><p>From the <a href="https://docs.swift.org/swift-book/LanguageGuide/Protocols.html">swift documentation</a>:</p><blockquote><p>Delegation is a design pattern that enables a class or structure to hand off (or delegate) some of its responsibilities to an instance of another type. This design pattern is implemented by defining a protocol that encapsulates the delegated responsibilities, such that a conforming type (known as a delegate) is guaranteed to provide the functionality that has been delegated. Delegation can be used to respond to a particular action or to retrieve data from an external source without needing to know the underlying type of that source.</p></blockquote><p>There is often an analogy with the boss and the intern.</p><p>I made a small example below. Our app has two screens. The first screen changes its colour based on the choice taken by the user on the second screen. How do these two views communicate?</p><p>In this case, we can think of the first screen (the BaseScreen) as our intern waiting to be told what to do. The second screen ( the SelectionScreen) is the boss telling the first screen to change its colour.</p><p>The two ViewColtrollers are as a starting point:</p><h4>The BaseScreen</h4><pre><code><span class="keyword">class</span> BaseScreen: <span class="type">UIViewController</span> {
+    <span class="comment">//this button will bring me to the SelectionScreen</span> 
+    <span class="keyword">@IBOutlet weak var</span> chooseButton: <span class="type">UIButton</span>!
+    
+    <span class="keyword">override func</span> viewDidLoad() {
+        <span class="keyword">super</span>.<span class="call">viewDidLoad</span>()
+    }
+
+    <span class="keyword">@IBAction func</span> chooseButtonTapped(<span class="keyword">_</span> sender: <span class="type">UIButton</span>) {
+        <span class="keyword">let</span> selectionVC = storyboard?.<span class="call">instantiateViewController</span>(withIdentifier: <span class="string">"SelectionScreen"</span>) <span class="keyword">as</span>! <span class="type">SelectionScreen</span>
+        <span class="call">present</span>(selectionVC, animated: <span class="keyword">true</span>, completion: <span class="keyword">nil</span>)
+    }
+}
+</code></pre><h4>The SelectionScreen</h4><p>This view will show two buttons, pressing one of them will just dismiss the view controller and return to the BaseScreen.</p><pre><code><span class="keyword">class</span> SelectionScreen: <span class="type">UIViewController</span> {
+
+    <span class="keyword">override func</span> viewDidLoad() {
+        <span class="keyword">super</span>.<span class="call">viewDidLoad</span>()
+    }
+    <span class="keyword">@IBAction func</span> redButtonTapped(<span class="keyword">_</span> sender: <span class="type">UIButton</span>) {
+        <span class="call">dismiss</span>(animated: <span class="keyword">true</span>, completion: <span class="keyword">nil</span>)
+    }
+
+    <span class="keyword">@IBAction func</span> blueButtonTapped(<span class="keyword">_</span> sender: <span class="type">UIButton</span>) {
+        <span class="call">dismiss</span>(animated: <span class="keyword">true</span>, completion: <span class="keyword">nil</span>)
+    }
+}
+</code></pre><h4>The steps to implement the delegation pattern are:</h4><ul><li>create a protocol with a function declaration. This function is only declared in the protocol. It will be called in the selection screen and will be implemented in the base screen.</li></ul><pre><code><span class="keyword">protocol</span> ColorChangeDelegate {
+    <span class="keyword">func</span> didChooseColor(color: <span class="type">UIColor</span>)
+}
+</code></pre><ul><li>Our main screen, the base screen, will conform to that delegate protocol and implement the function declared in the protocol.</li></ul><pre><code><span class="keyword">extension</span> <span class="type">BaseScreen</span>: <span class="type">ColorChangeDelegate</span> {
+    <span class="keyword">func</span> didChooseColor(color: <span class="type">UIColor</span>) {
+        view.<span class="property">backgroundColor</span> = color
+    }
+}
+</code></pre><p>So when the base screen will present the SelectionViewController, it will set itself as its delegate.</p><pre><code><span class="keyword">class</span> BaseScreen: <span class="type">UIViewController</span> {
+
+    <span class="keyword">@IBOutlet weak var</span> chooseButton: <span class="type">UIButton</span>!
+    
+    <span class="keyword">override func</span> viewDidLoad() {
+        <span class="keyword">super</span>.<span class="call">viewDidLoad</span>()
+    }
+
+    <span class="keyword">@IBAction func</span> chooseButtonTapped(<span class="keyword">_</span> sender: <span class="type">UIButton</span>) {
+        <span class="keyword">let</span> selectionVC = storyboard?.<span class="call">instantiateViewController</span>(withIdentifier: <span class="string">"SelectionScreen"</span>) <span class="keyword">as</span>! <span class="type">SelectionScreen</span>
+        <span class="comment">// this is where we assign the base controller as the delegate of the next screen</span> 
+        selectionVC.<span class="property">colorDelegate</span> = <span class="keyword">self</span>
+        present(selectionVC, animated: <span class="keyword">true</span>, completion: <span class="keyword">nil</span>)
+    }
+}
+
+</code></pre><ul><li>The selection screen will call the delegate function when the button has been tapped but not implement what will happen in the implementation:</li></ul><pre><code><span class="keyword">class</span> SelectionScreen: <span class="type">UIViewController</span> {
+    <span class="comment">// this is the declaration of my delegate. It is unwrapped because it is initialised in the previous screen</span>
+    <span class="keyword">var</span> colorDelegate: <span class="type">ColorChangeDelegate</span>!
+    
+    <span class="keyword">override func</span> viewDidLoad() {
+        <span class="keyword">super</span>.<span class="call">viewDidLoad</span>()
+    }
+    <span class="keyword">@IBAction func</span> redButtonTapped(<span class="keyword">_</span> sender: <span class="type">UIButton</span>) {
+    <span class="comment">// if I tap this button I call the method didChooseColor(color:) on my delegate 
+    // Guess who is the delegate? Thats right, BaseScreen!</span>
+        colorDelegate.<span class="call">didChooseColor</span>(color: .<span class="dotAccess">red</span>)
+        <span class="call">dismiss</span>(animated: <span class="keyword">true</span>, completion: <span class="keyword">nil</span>)
+    }
+
+    <span class="keyword">@IBAction func</span> blueButtonTapped(<span class="keyword">_</span> sender: <span class="type">UIButton</span>) {
+    <span class="comment">// same here as above</span>
+        colorDelegate.<span class="call">didChooseColor</span>(color: .<span class="dotAccess">blue</span>)
+        <span class="call">dismiss</span>(animated: <span class="keyword">true</span>, completion: <span class="keyword">nil</span>)
+    }
+}
+</code></pre><p>Now tapping on one of the two button will dismiss the SelectionScreen and will change the color on the delegate view which is our BaseScreen.</p><p>This was a very basic explanation. The code is on <a href="https://github.com/multitudes/Delegates-Protocols/tree/master">GitHub</a> I hope this simple example made things a bit clearer about delegation in Swift.</p></div></div></div><div class="footer pure-u-1"><div class="pure-u-1">© 2020 Laurent Brusa</div><div class="pure-u-1">Generated using <a href="https://github.com/johnsundell/publish">Publish</a>. Written in Swift</div><div class="pure-u-1"><a href="/feed.rss">RSS feed</a></div></div></div></body></html>
