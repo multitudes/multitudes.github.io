@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous"/><link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css"/><link rel="stylesheet" href="/Pure/styles.css"/><link rel="stylesheet" href="/all.css"/></head><body><div id="layout" class="pure-g"><div><div class="pure-menu pure-menu-horizontal pure-u-1-1 top-header"><a class="pure-menu-heading" href="/">Home</a><ul class="pure-menu-list"><li class="pure-menu-item"><a class="pure-menu-link" href="/about">About</a></li></ul></div></div><div class="sidebar pure-u-1 pure-u-md-1-4"><div class="header"><div id="layout" class="pure-g"><div class="author__avatar"><img src="https://avatars2.githubusercontent.com/u/29355828?s=400&u=8a4658d2d5d4b601e9246f9c77d61cd80b78d848&v=4"/></div><div class="pure-u-md-1-1 pure-u-3-4"><h1 class="brand-title">Laurent Brusa</h1><h3 class="brand-tagline">iOS Developer</h3></div></div><div id="layout" class="pure-g"><div class="pure-u-md-1-1"><a href="https://goo.gl/maps/Ciy1Bxq9EA9JiUgs9"><i class="fas fa-map-marker-alt l-box"></i><a class="social-media" href="https://goo.gl/maps/Ciy1Bxq9EA9JiUgs9">Berlin, Germany</a></a></div><div class="pure-u-md-1-1"><a href="https://github.com/multitudes/portfolio/blob/master/README.md"><i class="fas fa-pepper-hot l-box"></i><a class="social-media" href="https://github.com/multitudes/portfolio/blob/master/README.md">Portfolio</a></a></div><div class="pure-u-md-1-1"><a href="https://www.linkedin.com/in/laurentbrusa"><i class="fab fa-linkedin l-box"></i><a class="social-media" href="https://www.linkedin.com/in/laurentbrusa">LinkedIn</a></a></div><div class="pure-u-md-1-1"><a href="https://github.com/multitudes"><i class="fab fa-github-square l-box"></i><a class="social-media" href="https://github.com/multitudes">GitHub</a></a></div><div class="pure-u-md-1-1"><a href="https://twitter.com/wrmultitudes"><i class="fab fa-twitter-square l-box"></i><a class="social-media" href="https://twitter.com/wrmultitudes">Twitter</a></a></div></div></div></div><div class="content pure-u-1 pure-u-md-3-5 pure-u-xl-6-10"><h2 class="post-title"><a href="/posts/ProgrammaticUISetup">UITabbar: Comparing storyboards vs programmatic setup</a></h2><p class="post-meta">1 February 2020</p><div class="post-tags"><a class="post-category post-category-ios" href="/tags/ios">iOS</a><a class="post-category post-category-swift" href="/tags/swift">swift</a><a class="post-category post-category-xcode" href="/tags/xcode">Xcode</a><a class="post-category post-category-tutorial" href="/tags/tutorial">tutorial</a></div><div class="post-description"><div><h2>Doing your UI With StoryBoards</h2><p>Storyboards are great, but they sure take up a lot of space!</p><p>First create a new Project in Xcode. Look for <code>Tabbed App</code></p><p align="center">
+<img src="/images/tabbar/8.png" class="pure-img-responsive" title="tabbar image"></img>
+</p><p>Your storyboard will look like this:</p><p align="center">
+<img src="/images/tabbar/9.png" class="pure-img-responsive" title="tabbar image"></img>
+</p><p>By the way it is already ready to be edited. Run the project on the simulator and try it out. Both views will look like this out of the box:</p><p align="center">
+<img src="/images/tabbar/13.png" class="pure-img-responsive" width="230" title="tabbar image"></img>
+<img src="/images/tabbar/14.png" class="pure-img-responsive" width="230" title="tabbar image"></img>
+</p><p>The Tabbar Items can be customised easily in the inspector on the right:</p><p align="center">
+<img src="/images/tabbar/10.png" class="pure-img-responsive" title="tabbar image"></img>
+</p><h2>Doing your UI programmatically: Main setup</h2><p>First create a new Project in Xcode. Select on Storyboards and not SwiftUI.</p><p align="center">
+<img src="/images/tabbar/1.png" class="pure-img-responsive" title="tabbar image"></img>
+</p><p>Delete the `main.storyboard' file</p><p align="center">
+<img src="/images/tabbar/4.png" class="pure-img-responsive" title="tabbar image"></img>
+</p><p>When in the project remove the references to the main storyboard in two places:</p><p align="center">
+<img src="/images/tabbar/2.png" class="pure-img-responsive" title="tabbar image"></img>
+</p><p>Making sure to hit the enter key:</p><p align="center">
+<img src="/images/tabbar/3.png" class="pure-img-responsive" title="tabbar image"></img>
+</p><p>In the General setting tab (press Enter when empty) and in the plist file.</p><p align="center">
+<img src="/images/tabbar/5.png" class="pure-img-responsive" title="tabbar image"></img>
+</p><h2>First steps</h2><p>Developing for iOS13 we have one new file in the project by default. In previous versions of Xcode we had the file <code>AppDelegate.swift</code> to set up our UIWindow. Now there is the <code>SceneDelegate.swift</code> as well. We will need to edit that file.</p><p>By default it gives us this hint already about the window property:</p><p align="center">
+<img src="/images/tabbar/7.png" class="pure-img-responsive" title="tabbar image"></img>
+</p><p>This means that in iOS13 we have always still only one main window but also a windowScene property which will be most times our window, however in the multitasking option on the ipad, will allow us to have the same app opening on a different <code>windowScene</code>.</p><p>In <code>SceneDelegate.swift</code> :</p><pre><code><span class="comment">// we give a name to our variable</span>
+<span class="keyword">guard let</span> windowScene = (scene <span class="keyword">as</span>? <span class="type">UIWindowScene</span>) <span class="keyword">else</span> { <span class="keyword">return</span> }
+<span class="comment">// our window will be the whole screen</span>
+window = <span class="type">UIWindow</span>(frame: windowScene.<span class="property">coordinateSpace</span>.<span class="property">bounds</span>)
+<span class="comment">//assign windowScene to the windowScene property of our window</span> 
+window?.<span class="property">windowScene</span> = windowScene
+<span class="comment">// assign the root controller to the window</span>
+window?.<span class="property">rootViewController</span> = <span class="type">ViewController</span>()
+<span class="comment">// and make it visible at start</span>
+window?.<span class="call">makeKeyAndVisible</span>()
+</code></pre><p>We can test it in our <code>ViewController.swift</code> file using</p><pre><code><span class="keyword">class</span> ViewController: <span class="type">UIViewController</span> {
+    <span class="keyword">override func</span> viewDidLoad() {
+    <span class="keyword">super</span>.<span class="call">viewDidLoad</span>()
+    view.<span class="property">backgroundColor</span> = .<span class="dotAccess">systemGreen</span>
+    }
+}
+</code></pre><h2>Setup the tabbar.</h2><p>The tabbar will hold two navigation controllers.</p><p>Delete the file <code>ViewController.swift</code> and edit the <code>SceneDelegate.swift</code> as follows.</p><pre><code>window?.<span class="property">rootViewController</span> = <span class="type">UITabBarController</span>()
+</code></pre><p>This was a very basic explanation. The code is on <a href="https://github.com/multitudes/Delegates-Protocols/tree/master">GitHub</a> I hope this simple example made things a bit clearer about delegation in Swift.</p><p>Make a new cocoa class file suclassing a UIViewController. As a test we add:</p><pre><code>     <span class="comment">// incidentally this supports the darkmode automatically!</span>
+        view.<span class="property">backgroundColor</span> = .<span class="dotAccess">systemPink</span>
+</code></pre><p>We now create 2 navigation controllers for our tabbar.</p><p>The Tabbar will hold an array of NavigationControllers (in our case two) and each will have an array of ViewControllers ( in this case just one)</p><p>Edit the <code>SceneDelegate.swift</code> as follows:</p><pre><code><span class="comment">// create the nav controllers</span>
+<span class="keyword">let</span> searchNC = <span class="type">UINavigationController</span>(rootViewController: <span class="type">SearchVC</span>())
+<span class="keyword">let</span> favoritesNC = <span class="type">UINavigationController</span>(rootViewController: <span class="type">FavoriteListyVC</span>())
+<span class="comment">// create tabbar with array of nav controllers</span>
+<span class="keyword">let</span> tabbar = <span class="type">UITabBarController</span>()
+tabbar.<span class="property">viewControllers</span> = [searchNC, favoritesNC]
+</code></pre><p>Run the project, you should be able to select two screens, with no buttons. Still you will be able to tab between the two.</p><h4>Customize and refactor</h4><p>Create a function to customize the two Nav Controllers</p><pre><code><span class="keyword">func</span> createSearchNavigationController() -&gt; <span class="type">UINavigationController</span> {
+    <span class="comment">// we create the view controller and insert into the nav controller and return</span>
+    <span class="keyword">let</span> searchVC = <span class="type">SearchVC</span>()
+    searchVC.<span class="property">title</span> = <span class="string">"Search"</span>
+    <span class="comment">// it is a system tabbaritem , tag zero because it is the first one</span>
+    searchVC.<span class="property">tabBarItem</span> = <span class="type">UITabBarItem</span>(tabBarSystemItem: .<span class="dotAccess">search</span>, tag: <span class="number">0</span>)
+    <span class="keyword">return</span> <span class="type">UINavigationController</span>(rootViewController: searchVC)
+}
+
+<span class="keyword">func</span> createFavoritesNavigationController() -&gt; <span class="type">UINavigationController</span> {
+    <span class="keyword">let</span> favoritesListVC = <span class="type">FavoritesListVC</span>()
+    favoritesListVC.<span class="property">title</span> = <span class="string">"Favorites"</span>
+    <span class="comment">// it is a system tabbaritem , tag zero because it is the first one</span>
+    favoritesListVC.<span class="property">tabBarItem</span> = <span class="type">UITabBarItem</span>(tabBarSystemItem: .<span class="dotAccess">favorites</span>, tag: <span class="number">1</span>)
+    <span class="keyword">return</span> <span class="type">UINavigationController</span>(rootViewController: favoritesListVC)
+}
+</code></pre><p>Refactor into a tabbar function</p><pre><code><span class="keyword">func</span> createtabbar() -&gt; <span class="type">UITabBarController</span> {
+    <span class="keyword">let</span> tabbar = <span class="type">UITabBarController</span>()
+    <span class="comment">// here we assign a tint to all our tabbars, this will be visible on the items (icons)</span>
+    <span class="type">UITabBar</span>.<span class="call">appearance</span>().<span class="property">tintColor</span> = .<span class="dotAccess">systemPink</span>
+    <span class="comment">// replace our array variables with the functions we created</span>
+    tabbar.<span class="property">viewControllers</span> = [<span class="call">createSearchNavigationController</span>(), <span class="call">createFavoritesNavigationController</span>()]
+    <span class="keyword">return</span> <span class="call">tabbar</span>()
+}
+</code></pre><p>Edit: Our <code>scene</code> function will be much cleaner and now look like:</p><pre><code><span class="keyword">func</span> scene(<span class="keyword">_</span> scene: <span class="type">UIScene</span>, willConnectTo session: <span class="type">UISceneSession</span>, options connectionOptions: <span class="type">UIScene</span>.<span class="type">ConnectionOptions</span>) {
+    <span class="keyword">guard let</span> windowScene = (scene <span class="keyword">as</span>? <span class="type">UIWindowScene</span>) <span class="keyword">else</span> { <span class="keyword">return</span> }
+
+    window = <span class="type">UIWindow</span>(frame: windowScene.<span class="property">coordinateSpace</span>.<span class="property">bounds</span>)
+    window?.<span class="property">windowScene</span> = windowScene
+    window?.<span class="property">rootViewController</span> = <span class="call">createtabbar</span>()
+    window?.<span class="call">makeKeyAndVisible</span>()
+}
+</code></pre><p>Or you create a separate file with a tabbar class inheriting from UITabBarController and containing the functions <code>createSearchNavigationController()</code> , <code>createFavoritesNavigationController()</code> and initialising the tab bar.</p><p>Now running in the simulator you should be able to tab between these two:</p><p align="center">
+<img src="/images/tabbar/11.png" class="pure-img-responsive" width="230" title="tabbar image"></img>
+<img src="/images/tabbar/12.png" class="pure-img-responsive" width="230" title="tabbar image"></img>
+</p><h2>Custom Tabbar Items</h2><p>As per Swift5.1 and Xcode the title and image of the system tab bar items cannot be changed. They are defined as enum in obj c as follow. This is the list:</p><pre><code>typedef <span class="keyword">enum</span> UITabBarSystemItem : <span class="type">NSInteger</span> {
+    <span class="keyword">case</span> more, favorites, featured, topRated, recents, contacts, 
+    history, bookmarks, search, downloads ,mostRecent, mostViewed
+} <span class="type">UITabBarSystemItem</span>;
+</code></pre><p>This has a reason. Some icons are immediately recognisable across the whole iOS ecosystem and mean the same thing to everyone, therefore it is not possible to use them differently. In this way Apple creates a better user experience. You cannot use the Apple icon and use a different title. You could use a custom icon and custom title instead or in the Storyboards select an SF Symbol like this:</p><p><a href="https://i.stack.imgur.com/PG4aG.png"><img src="https://i.stack.imgur.com/PG4aG.png" alt="itemWithStoryboards"/></a></p><p>A great option is to use the SF Symbols. Download SF Symbols from the <a href="https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/">Apple website</a>. Then open the app and select a symbol you like. Copy the name with CMD-Shift-C. Assign an icon and text to a Tabbar Item using SF symbols like <code>"person.fill"</code> for the icon ane "Profile" for title as below:</p><pre><code><span class="keyword">func</span> createProfileNC() -&gt; <span class="type">UINavigationController</span> {
+    <span class="keyword">let</span> profileVC = <span class="type">ProfileVC</span>()
+    profileVC.<span class="property">title</span> = <span class="string">"My Profile"</span>
+    profileVC.<span class="property">tabBarItem</span> = <span class="type">UITabBarItem</span>(title: <span class="string">"Profile"</span>, image: <span class="type">UIImage</span>(systemName: <span class="string">"person.fill"</span>), tag: <span class="number">2</span>)
+    <span class="keyword">return</span> <span class="type">UINavigationController</span>(rootViewController: profileVC)
+}
+</code></pre></div></div></div><div class="footer pure-u-1"><div class="pure-u-1">© 2020 Laurent Brusa</div><div class="pure-u-1">Generated using <a href="https://github.com/johnsundell/publish">Publish</a>. Written in Swift</div><div class="pure-u-1"><a href="/feed.rss">RSS feed</a></div></div></div></body></html>

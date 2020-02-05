@@ -154,17 +154,36 @@ h3 {
 /*    American Palette https://flatuicolors.com/palette/us*/
 
     .post-category-swift {
-        background: #90AFC5;
+        background: rgb(201, 52, 0);
     }
     .post-category-ios {
-        background: #336B87;
+        background: rgb(211,15,59);
     }
     .post-category-tutorial {
-        background: #2A3132;
+        background: rgb(0, 64, 221);
     }
     .post-category-other {
-        background: #763526;
+        background: rgb(178,80,0);
     }
+    .post-category-developer {
+        background: rgb(178,80,0);
+    }
+    .post-category-2019 {
+        background: rgb(36, 138, 61);
+    }
+    .post-category-augmentedreality {
+        background: rgb(54,52,163);
+    }
+    .post-category-xcode {
+        background: rgb(0, 113, 164);
+    }
+    .post-category-regex {
+        background: rgb(0, 113, 164);
+    }
+.post-category-challenges {
+    background: rgb(0, 113, 164);
+}
+
 
 .post-images {
     margin: 2em 0;
@@ -178,14 +197,14 @@ h3 {
 
 .footer {
     padding: 1em 0;
-    color: #ccc;
+    color: #cb3018;
     font-size: 90%;
     text-align: center;
 }
 
 .footer a {
     padding: 1em 0;
-    color: #ccc;
+    color: #cb3018;
     font-size: 90%;
     text-decoration: underline;
     text-align: center;
