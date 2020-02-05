@@ -35,10 +35,10 @@ window?.<span class="call">makeKeyAndVisible</span>()
     view.<span class="property">backgroundColor</span> = .<span class="dotAccess">systemGreen</span>
     }
 }
-</code></pre><h2>Setup the tabbar.</h2><p>The tabbar will hold two navigation controllers.</p><p>Delete the file <code>ViewController.swift</code> and edit the <code>SceneDelegate.swift</code> as follows.</p><pre><code>window?.<span class="property">rootViewController</span> = <span class="type">UITabBarController</span>()
-</code></pre><p>This was a very basic explanation. The code is on <a href="https://github.com/multitudes/Delegates-Protocols/tree/master">GitHub</a> I hope this simple example made things a bit clearer about delegation in Swift.</p><p>Make a new cocoa class file suclassing a UIViewController. As a test we add:</p><pre><code>     <span class="comment">// incidentally this supports the darkmode automatically!</span>
+</code></pre><h2>Setup the tabbar.</h2><p>The tabbar will hold two navigation controllers.<br>Delete the file <code>ViewController.swift</code> and edit the <code>SceneDelegate.swift</code> as follows.</p><pre><code>window?.<span class="property">rootViewController</span> = <span class="type">UITabBarController</span>()
+</code></pre><p>Make a new cocoa class file suclassing a UIViewController. As a test we add:</p><pre><code>     <span class="comment">// incidentally this supports the darkmode automatically!</span>
         view.<span class="property">backgroundColor</span> = .<span class="dotAccess">systemPink</span>
-</code></pre><p>We now create 2 navigation controllers for our tabbar.</p><p>The Tabbar will hold an array of NavigationControllers (in our case two) and each will have an array of ViewControllers ( in this case just one)</p><p>Edit the <code>SceneDelegate.swift</code> as follows:</p><pre><code><span class="comment">// create the nav controllers</span>
+</code></pre><p>We now create 2 navigation controllers for our tabbar.<br>The Tabbar will hold an array of NavigationControllers (in our case two) and each will have an array of ViewControllers ( in this case just one)</p><p>Edit the <code>SceneDelegate.swift</code> as follows:</p><pre><code><span class="comment">// create the nav controllers</span>
 <span class="keyword">let</span> searchNC = <span class="type">UINavigationController</span>(rootViewController: <span class="type">SearchVC</span>())
 <span class="keyword">let</span> favoritesNC = <span class="type">UINavigationController</span>(rootViewController: <span class="type">FavoriteListyVC</span>())
 <span class="comment">// create tabbar with array of nav controllers</span>
