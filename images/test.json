@@ -1,14 +1,5 @@
   [
-    {
-          "coffeeShop": "19grams Coffee Roasters",
-          "subtext": "Las Lajas Black Diamond",
-          "category": "Filter Coffee",
-          "preparation": "AeroPress, French Press, Chemex, Filter Coffee",
-          "region": "Central America",
-          "flavour": "",
-          "product_link": "https://19grams.coffee/en/coffee/filter/costa-rica-las-lajas-black-diamond",
-          "image_small": "https://19grams.coffee/data/drive/2020/02/_cache/e0f860aeab072d107286e7b76378c81b_0987b5d85748f720e0f64e06b4fe072c.jpg"
-        },
+    
         {
            "coffeeShop": "19grams Coffee Roasters",
           "subtext": "Kinyovu Honey",
