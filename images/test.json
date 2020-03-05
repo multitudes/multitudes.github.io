@@ -31,7 +31,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "Yunnan Xingang coffee",
+            "coffee_name": "Yunnan Xingang coffee",
             "category": "Filter Coffee",
             "preparation": "AeroPress, French Press, Chemex, Filter Coffee",
             "region": "Asia",
@@ -41,7 +41,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "Nova 'Cafe des Mamas\u2019 Project Coffee",
+            "coffee_name": "Nova 'Cafe des Mamas\u2019 Project Coffee",
             "category": "Filter Coffee",
             "preparation": "AeroPress, French Press, Chemex, Filter Coffee",
             "region": "Africa",
@@ -51,7 +51,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "La Escondida Espresso",
+            "coffee_name": "La Escondida Espresso",
             "category": "Espresso",
             "preparation": "AeroPress, Stovetop, Espresso machine",
             "region": "Central America",
