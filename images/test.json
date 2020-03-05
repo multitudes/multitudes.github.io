@@ -1,7 +1,7 @@
     [
       {
             "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "Las Lajas Black Diamond",
+            "coffee_name": "Las Lajas Black Diamond",
             "category": "Filter Coffee",
             "preparation": "AeroPress, French Press, Chemex, Filter Coffee",
             "region": "Central America",
@@ -11,7 +11,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "Kinyovu Honey",
+            "coffee_name": "Kinyovu Honey",
             "category": "Filter Coffee",
             "preparation": "AeroPress, French Press, Chemex, Filter Coffee",
             "region": "Africa",
@@ -21,7 +21,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "Beatriz Giraldo La Esperanza Espresso",
+            "coffee_name": "Beatriz Giraldo La Esperanza Espresso",
             "category": "Espresso",
             "preparation": "AeroPress, Stovetop, Espresso machine",
             "region": "South America",
@@ -61,7 +61,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "Gatomboya AA",
+            "coffee_name": "Gatomboya AA",
             "category": "Espresso",
             "preparation": "AeroPress, Stovetop, Espresso machine",
             "region": "Africa",
@@ -71,7 +71,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "Guji Uraga",
+            "coffee_name": "Guji Uraga",
             "category": "Filter Coffee",
             "preparation": "AeroPress, French Press, Chemex, Filter Coffee",
             "region": "Africa",
@@ -81,7 +81,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "",
+            "coffee_name": "Endless Summer",
             "category": "Espresso",
             "preparation": "Fully automatic coffee machine, AeroPress, Stovetop",
             "region": "Central America",
@@ -91,7 +91,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "Candelilla Estate Espresso",
+            "coffee_name": "Candelilla Estate Espresso",
             "category": "Espresso",
             "preparation": "AeroPress, Stovetop, Espresso machine",
             "region": "Central America",
@@ -101,7 +101,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "Villalobos 'Hacienda Sonora' Espresso",
+            "coffee_name": "Villalobos 'Hacienda Sonora' Espresso",
             "category": "Espresso",
             "preparation": "AeroPress, Stovetop, Espresso machine",
             "region": "Central America",
@@ -111,7 +111,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "Dark Espresso",
+            "coffee_name": "Dark Espresso",
             "category": "Espresso",
             "preparation": "Fully automatic coffee machine, Stovetop, Espresso machine",
             "region": "South America",
@@ -121,7 +121,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "Little Flower Espresso",
+            "coffee_name": "Little Flower Espresso",
             "category": "Espresso",
             "preparation": "Fully automatic coffee machine, AeroPress, Stovetop, Espresso machine",
             "region": "Asia",
@@ -131,7 +131,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "Sumatra Orangutan Coffee",
+            "coffee_name": "Sumatra Orangutan Coffee",
             "category": "Espresso",
             "preparation": "Fully automatic coffee machine, AeroPress, Stovetop, Espresso machine",
             "region": "Asia",
@@ -141,7 +141,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "perfect espresso",
+            "coffee_name": "perfect espresso",
             "category": "Espresso",
             "preparation": "Fully automatic coffee machine, AeroPress, Stovetop, Espresso machine, French Press",
             "region": "South America, Central America",
@@ -151,7 +151,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "Decaffeinated Espresso",
+            "coffee_name": "Decaffeinated Espresso",
             "category": "Decaf",
             "preparation": "Fully automatic coffee machine, AeroPress, Stovetop, Espresso machine, French Press, Chemex, Filter Coffee",
             "region": "South America",
@@ -161,7 +161,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "espresso",
+            "coffee_name": "espresso",
             "category": "Berlinkaffee",
             "preparation": "Fully automatic coffee machine, Stovetop, Espresso machine",
             "region": "South America, Central America, Asia",
@@ -171,7 +171,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "espresso",
+            "coffee_name": "espresso",
             "category": "Berlinkaffee",
             "preparation": "Fully automatic coffee machine, AeroPress, Stovetop, Espresso machine",
             "region": "Central America",
@@ -181,7 +181,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "Organic Espresso",
+            "coffee_name": "Organic Espresso",
             "category": "Berlinkaffee",
             "preparation": "Fully automatic coffee machine, Stovetop, Espresso machine",
             "region": "South America, Central America, Africa, Oceania",
@@ -191,7 +191,7 @@
           },
           {
              "coffeeShop": "19grams Coffee Roasters",
-            "subtext": "Bio Fair Trade",
+            "coffee_name": "Bio Fair Trade",
             "category": "Berlinkaffee",
             "preparation": "Fully automatic coffee machine, AeroPress, Stovetop, Espresso machine, French Press, Chemex, Filter Coffee",
             "region": "South America",
