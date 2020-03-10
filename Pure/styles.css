@@ -3,6 +3,8 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+
+
 .fab , .fas {
     font-size:35px;
     margin: 0.4em;
