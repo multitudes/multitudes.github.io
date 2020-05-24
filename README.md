@@ -7,6 +7,6 @@ I made and customised my website now entirely using Swift built as a package in 
 
 <br></br>
 <p align="center">
-<img src="images/blog/blogMadeInSwift.png" width="750"  title="blog">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/multitudes/portfolio/blob/master/images/blog/blogMadeInSwift.png" width="750"  title="blog">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  </p>
 <br></br>
